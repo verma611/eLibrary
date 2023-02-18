@@ -1,0 +1,67 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+
+
+
+<style>
+.make_light_text
+{
+    color:black;
+}
+</style>
+<br/>
+
+<form class="d-flex" action="{% url 'books:Search' %}" method="get">
+    <input type="text" name="q" placeholder="Search" class="form-control me-2">
+    <button type="submit" class="btn btn-outline-success">Search</button>
+  </form>
+<br/>
+
+<h1>{{ book.upload }}</h1>
+{% for book in books %}
+    <div class="card mb-3" style="max-width: 600px;">
+        <div class="row g-0">
+        <div class="col-md-4">
+            <img id="image" src="{{book.cover.url}}" class="img-fluid rounded-start">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <h5 class="card-title make_light_text">{{ book.title }}</h5>
+            <p class="card-text make_light_text">{{ book.Summary }}</p>
+            <p class="card-text"><small class="text-muted">Author: {{ book.author }}</small></p>
+            <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Options
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" download href="media/{{ book.upload }}">Download PDF version</a></li>
+          
+                  <form method="POST" action="{% url 'books:DisplayBook' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="BookPath" value="media/{{ book.upload }}">
+                    <li><button class="dropdown-item" type="submit">Read This Book In Browser</button></li>
+                  </form>              
+                </ul>
+              </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    {% empty %}
+    
+        <h1>No Results Found :(</h1>
+        <a href= "{% url 'books:HomePage' %}"><button type="button" class="btn btn-danger">Go Back To All Books</button></a>
+        
+{% endfor %}
+
+
+{% endblock %}
