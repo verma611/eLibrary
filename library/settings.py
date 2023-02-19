@@ -58,6 +58,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://freelibrary.azurewebsites.net'
+]
+
 #custom setting
 CSRF_COOKIE_SECURE = True
 
