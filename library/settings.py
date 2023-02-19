@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-tn6ko8tom^gn$4kkd%*+tgk^q2z8ez@2&$4+dsy*wp%h0b=9=b
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = [] # Set one of the values to '*' when DEABUG=FALSE
+ALLOWED_HOSTS = ['freelibrary.azurewebsites.net'] # Set one of the values to '*' when DEABUG=FALSE
 
 
 # Application definition
